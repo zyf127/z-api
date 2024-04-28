@@ -22,7 +22,7 @@ import static com.zyf.constant.UserConstant.USER_LOGIN_STATE;
 /**
  * 用户服务实现类
  *
- * @author yupi
+ * @author zyf
  */
 @Service
 @Slf4j
@@ -35,7 +35,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     /**
      * 盐值，混淆密码
      */
-    private static final String SALT = "yupi";
+    private static final String SALT = "zyf";
 
     @Override
     public long userRegister(String userAccount, String userPassword, String checkPassword) {
@@ -56,7 +56,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         synchronized (userAccount.intern()) {
             // 账户不能重复
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("userAccount", userAccount);
+            queryWrapper.eq("user_account", userAccount);
             long count = userMapper.selectCount(queryWrapper);
             if (count > 0) {
                 throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号重复");
@@ -91,8 +91,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         String encryptPassword = DigestUtils.md5DigestAsHex((SALT + userPassword).getBytes());
         // 查询用户是否存在
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("userAccount", userAccount);
-        queryWrapper.eq("userPassword", encryptPassword);
+        queryWrapper.eq("user_account", userAccount);
+        queryWrapper.eq("user_password", encryptPassword);
         User user = userMapper.selectOne(queryWrapper);
         // 用户不存在
         if (user == null) {

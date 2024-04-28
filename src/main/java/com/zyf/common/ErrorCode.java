@@ -3,7 +3,7 @@ package com.zyf.common;
 /**
  * 错误码
  *
- * @author yupi
+ * @author zyf
  */
 public enum ErrorCode {
 

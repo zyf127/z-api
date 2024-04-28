@@ -1,4 +1,4 @@
-package com.yupi.project.service;
+package com.zyf.service;
 
 import com.zyf.model.entity.User;
 import com.zyf.service.UserService;
@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 /**
  * 用户服务测试
  *
- * @author yupi
+ * @author zyf
  */
 @SpringBootTest
 class UserServiceTest {
@@ -48,31 +48,31 @@ class UserServiceTest {
 
     @Test
     void userRegister() {
-        String userAccount = "yupi";
+        String userAccount = "zyf";
         String userPassword = "";
         String checkPassword = "123456";
         try {
             long result = userService.userRegister(userAccount, userPassword, checkPassword);
             Assertions.assertEquals(-1, result);
-            userAccount = "yu";
+            userAccount = "zy";
             result = userService.userRegister(userAccount, userPassword, checkPassword);
             Assertions.assertEquals(-1, result);
-            userAccount = "yupi";
+            userAccount = "zyf";
             userPassword = "123456";
             result = userService.userRegister(userAccount, userPassword, checkPassword);
             Assertions.assertEquals(-1, result);
-            userAccount = "yu pi";
+            userAccount = "zy f";
             userPassword = "12345678";
             result = userService.userRegister(userAccount, userPassword, checkPassword);
             Assertions.assertEquals(-1, result);
             checkPassword = "123456789";
             result = userService.userRegister(userAccount, userPassword, checkPassword);
             Assertions.assertEquals(-1, result);
-            userAccount = "dogYupi";
+            userAccount = "zyf127";
             checkPassword = "12345678";
             result = userService.userRegister(userAccount, userPassword, checkPassword);
             Assertions.assertEquals(-1, result);
-            userAccount = "yupi";
+            userAccount = "zyf";
             result = userService.userRegister(userAccount, userPassword, checkPassword);
             Assertions.assertEquals(-1, result);
         } catch (Exception e) {

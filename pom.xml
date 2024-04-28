@@ -9,7 +9,7 @@
         <version>2.7.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.yupi</groupId>
+    <groupId>com.zyf</groupId>
     <artifactId>z-api-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>z-api-backend</name>

@@ -3,7 +3,7 @@ package com.zyf.constant;
 /**
  * 用户常量
  *
- * @author yupi
+ * @author zyf
  */
 public interface UserConstant {
 

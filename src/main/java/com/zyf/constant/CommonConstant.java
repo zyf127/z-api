@@ -3,7 +3,7 @@ package com.zyf.constant;
 /**
  * 通用常量
  *
- * @author yupi
+ * @author zyf
  */
 public interface CommonConstant {
 

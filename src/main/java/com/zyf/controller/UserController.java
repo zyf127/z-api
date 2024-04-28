@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 /**
  * 用户接口
  *
- * @author yupi
+ * @author zyf
  */
 @RestController
 @RequestMapping("/user")
@@ -105,10 +105,6 @@ public class UserController {
         BeanUtils.copyProperties(user, userVO);
         return ResultUtils.success(userVO);
     }
-
-    // endregion
-
-    // region 增删改查
 
     /**
      * 创建用户
