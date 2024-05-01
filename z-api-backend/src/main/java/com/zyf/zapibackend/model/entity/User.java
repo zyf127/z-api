@@ -50,12 +50,12 @@ public class User implements Serializable {
     private String userPassword;
 
     /**
-     * access_key
+     * 签名 access_key
      */
     private String accessKey;
 
     /**
-     * secret_key
+     * 签名 secret_key
      */
     private String secretKey;
 

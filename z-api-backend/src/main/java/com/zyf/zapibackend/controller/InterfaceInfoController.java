@@ -3,11 +3,9 @@ package com.zyf.zapibackend.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zyf.zapibackend.annotation.AuthCheck;
-import com.zyf.zapibackend.common.BaseResponse;
-import com.zyf.zapibackend.common.DeleteRequest;
-import com.zyf.zapibackend.common.ErrorCode;
-import com.zyf.zapibackend.common.ResultUtils;
+import com.zyf.zapibackend.common.*;
 import com.zyf.zapibackend.constant.CommonConstant;
+import com.zyf.zapibackend.model.enums.InterfaceInfoStatusEnum;
 import com.zyf.zapibackend.exception.BusinessException;
 import com.zyf.zapibackend.model.dto.interfaceinfo.InterfaceInfoAddRequest;
 import com.zyf.zapibackend.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
@@ -16,6 +14,7 @@ import com.zyf.zapibackend.model.entity.InterfaceInfo;
 import com.zyf.zapibackend.model.entity.User;
 import com.zyf.zapibackend.service.InterfaceInfoService;
 import com.zyf.zapibackend.service.UserService;
+import com.zyf.zapiclientsdk.client.ZApiClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -39,7 +38,10 @@ public class InterfaceInfoController {
     private InterfaceInfoService interfaceInfoService;
     
     @Resource
-    UserService userService;
+    private UserService userService;
+
+    @Resource
+    private ZApiClient zApiClient;
 
     /**
      * 创建接口信息
@@ -191,4 +193,64 @@ public class InterfaceInfoController {
         return ResultUtils.success(InterfaceInfoPage);
     }
 
+    /**
+     * 上线接口
+     *
+     * @param idRequest 包含 id 的请求
+     * @param request
+     * @return 是否上线成功
+     */
+    @AuthCheck(mustRole = "admin")
+    @PostMapping("/online")
+    public BaseResponse<Boolean> onlineInterfaceInfo(@RequestBody IdRequest idRequest, HttpServletRequest request) {
+        if (idRequest == null || idRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        // 判断接口是否存在
+        Long id = idRequest.getId();
+        InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
+        if (oldInterfaceInfo == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+        }
+        // 判断接口是否可以成功调用
+        com.zyf.zapiclientsdk.model.User user = new com.zyf.zapiclientsdk.model.User();
+        user.setName("zyf");
+        String username = zApiClient.getUsernameByPost(user);
+        if (StringUtils.isAnyBlank(username)) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "接口验证失败");
+        }
+        // 仅本人或管理员可修改
+        InterfaceInfo interfaceInfo = new InterfaceInfo();
+        interfaceInfo.setId(id);
+        interfaceInfo.setStatus(InterfaceInfoStatusEnum.ONLINE.getValue());
+        boolean result = interfaceInfoService.updateById(interfaceInfo);
+        return ResultUtils.success(result);
+    }
+
+    /**
+     * 下线接口
+     *
+     * @param idRequest 包含 id 的请求
+     * @param request
+     * @return 是否下线成功
+     */
+    @AuthCheck(mustRole = "admin")
+    @PostMapping("/offline")
+    public BaseResponse<Boolean> offlineInterfaceInfo(@RequestBody IdRequest idRequest, HttpServletRequest request) {
+        if (idRequest == null || idRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        // 判断接口是否存在
+        Long id = idRequest.getId();
+        InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
+        if (oldInterfaceInfo == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+        }
+        // 仅本人或管理员可修改
+        InterfaceInfo interfaceInfo = new InterfaceInfo();
+        interfaceInfo.setId(id);
+        interfaceInfo.setStatus(InterfaceInfoStatusEnum.OFFLINE.getValue());
+        boolean result = interfaceInfoService.updateById(interfaceInfo);
+        return ResultUtils.success(result);
+    }
 }

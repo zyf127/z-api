@@ -42,7 +42,7 @@ public class ZApiClient {
     private Map<String, String> genHeaderMap(String body) {
         Map<String, String> map = new HashMap<>();
         map.put("accessKey", accessKey);
-        map.put("nonce", RandomUtil.randomNumbers(4));
+        map.put("nonce", RandomUtil.randomNumbers(5));
         map.put("body", body);
         map.put("timestamp", String.valueOf(System.currentTimeMillis()));
         map.put("sign", SignUtils.genSign(body, secretKey));

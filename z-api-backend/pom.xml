@@ -97,6 +97,11 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.zyf</groupId>
+            <artifactId>z-api-client-sdk</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>
