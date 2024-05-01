@@ -18,7 +18,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -35,11 +34,10 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- https://doc.hutool.cn/pages/index/#%F0%9F%8D%8Amaven -->
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.8.26</version>
+            <groupId>com.zyf</groupId>
+            <artifactId>z-api-client-sdk</artifactId>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -71,7 +69,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.zyf.ZApiInterfaceApplication</mainClass>
+                    <mainClass>com.zyf.zapiinterface.ZApiInterfaceApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
