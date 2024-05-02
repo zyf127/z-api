@@ -35,7 +35,7 @@ public class NameController {
         if (!accessKey.equals("zyf")) {
             throw new RuntimeException("无权限");
         }
-        if (Long.parseLong(nonce) > 10000) {
+        if (Long.parseLong(nonce) > 1000000) {
             throw new RuntimeException("无权限");
         }
         // TODO 时间和当前时间不能超过 5 分钟

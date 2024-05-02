@@ -1,2 +1,2 @@
-# spring boot start
+# spring boot starter
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.zyf.zapiclientsdk.ZApiClientConfig

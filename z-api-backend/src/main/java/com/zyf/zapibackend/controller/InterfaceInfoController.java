@@ -2,9 +2,11 @@ package com.zyf.zapibackend.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.gson.Gson;
 import com.zyf.zapibackend.annotation.AuthCheck;
 import com.zyf.zapibackend.common.*;
 import com.zyf.zapibackend.constant.CommonConstant;
+import com.zyf.zapibackend.model.dto.interfaceinfo.InterfaceInfoInvokeRequest;
 import com.zyf.zapibackend.model.enums.InterfaceInfoStatusEnum;
 import com.zyf.zapibackend.exception.BusinessException;
 import com.zyf.zapibackend.model.dto.interfaceinfo.InterfaceInfoAddRequest;
@@ -252,5 +254,38 @@ public class InterfaceInfoController {
         interfaceInfo.setStatus(InterfaceInfoStatusEnum.OFFLINE.getValue());
         boolean result = interfaceInfoService.updateById(interfaceInfo);
         return ResultUtils.success(result);
+    }
+
+    /**
+     * 调用接口
+     *
+     * @param interfaceInfoInvokeRequest 调用接口的请求参数
+     * @param request
+     * @return 接口的响应参数
+     */
+    @PostMapping("/invoke")
+    public BaseResponse<Object> invokeInterfaceInfo(@RequestBody InterfaceInfoInvokeRequest interfaceInfoInvokeRequest, HttpServletRequest request) {
+        if (interfaceInfoInvokeRequest == null || interfaceInfoInvokeRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        // 判断接口是否存在
+        Long id = interfaceInfoInvokeRequest.getId();
+        String userRequestParams = interfaceInfoInvokeRequest.getUserRequestParams();
+        InterfaceInfo interfaceInfo = interfaceInfoService.getById(id);
+        if (interfaceInfo == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+        }
+        if (interfaceInfo.getStatus() == InterfaceInfoStatusEnum.OFFLINE.getValue()) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "接口已关闭");
+        }
+        // 调用接口
+        User loginUser = userService.getLoginUser(request);
+        String accessKey = loginUser.getAccessKey();
+        String secretKey = loginUser.getSecretKey();
+        ZApiClient tempClient = new ZApiClient(accessKey, secretKey);
+        Gson gson = new Gson();
+        com.zyf.zapiclientsdk.model.User user = gson.fromJson(userRequestParams, com.zyf.zapiclientsdk.model.User.class);
+        String username = tempClient.getUsernameByPost(user);
+        return ResultUtils.success(username);
     }
 }
