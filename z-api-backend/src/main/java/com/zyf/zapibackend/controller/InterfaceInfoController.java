@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * 接口信息的接口
+ * 接口信息
  *
  * @author zyf
  */

@@ -13,6 +13,9 @@ import lombok.Data;
 @TableName(value ="interface_info")
 @Data
 public class InterfaceInfo implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 7121547243595213478L;
+
     /**
      * 主键
      */
@@ -80,6 +83,4 @@ public class InterfaceInfo implements Serializable {
     @TableLogic
     private Integer isDelete;
 
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

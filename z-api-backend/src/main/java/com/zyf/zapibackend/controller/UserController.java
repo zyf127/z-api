@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 用户接口
+ * 用户
  *
  * @author zyf
  */

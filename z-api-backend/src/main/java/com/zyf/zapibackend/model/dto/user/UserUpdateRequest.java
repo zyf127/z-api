@@ -12,6 +12,8 @@ import java.io.Serializable;
  */
 @Data
 public class UserUpdateRequest implements Serializable {
+    private static final long serialVersionUID = -2223090360420817609L;
+
     /**
      * id
      */
@@ -46,7 +48,4 @@ public class UserUpdateRequest implements Serializable {
      * 密码
      */
     private String userPassword;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

@@ -12,6 +12,8 @@ import java.io.Serializable;
 @Data
 public class UserAddRequest implements Serializable {
 
+    private static final long serialVersionUID = -5144198606664241825L;
+
     /**
      * 用户昵称
      */
@@ -41,6 +43,4 @@ public class UserAddRequest implements Serializable {
      * 密码
      */
     private String userPassword;
-
-    private static final long serialVersionUID = 1L;
 }

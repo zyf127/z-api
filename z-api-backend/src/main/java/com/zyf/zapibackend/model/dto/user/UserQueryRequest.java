@@ -15,6 +15,8 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class UserQueryRequest extends PageRequest implements Serializable {
+    private static final long serialVersionUID = 366643989655285447L;
+
     /**
      * id
      */
@@ -54,6 +56,4 @@ public class UserQueryRequest extends PageRequest implements Serializable {
      * 更新时间
      */
     private Date updateTime;
-
-    private static final long serialVersionUID = 1L;
 }
