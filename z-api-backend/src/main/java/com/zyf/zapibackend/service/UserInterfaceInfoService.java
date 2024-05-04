@@ -1,7 +1,7 @@
 package com.zyf.zapibackend.service;
 
-import com.zyf.zapibackend.model.entity.UserInterfaceInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zyf.zapicommon.model.entity.UserInterfaceInfo;
 
 /**
 * @author zyf

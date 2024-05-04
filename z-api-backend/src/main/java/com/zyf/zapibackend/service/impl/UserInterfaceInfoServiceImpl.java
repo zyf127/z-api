@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zyf.zapibackend.common.ErrorCode;
 import com.zyf.zapibackend.exception.BusinessException;
-import com.zyf.zapibackend.model.entity.UserInterfaceInfo;
 import com.zyf.zapibackend.service.UserInterfaceInfoService;
 import com.zyf.zapibackend.mapper.UserInterfaceInfoMapper;
+import com.zyf.zapicommon.model.entity.UserInterfaceInfo;
 import org.springframework.stereotype.Service;
 
 /**

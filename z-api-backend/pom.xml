@@ -23,15 +23,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.2.2</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -100,6 +101,28 @@
         <dependency>
             <groupId>com.zyf</groupId>
             <artifactId>z-api-client-sdk</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <!-- dubbo -->
+        <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>3.2.9</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba.nacos/nacos-client -->
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zyf</groupId>
+            <artifactId>z-api-common</artifactId>
             <version>0.0.1</version>
         </dependency>
     </dependencies>

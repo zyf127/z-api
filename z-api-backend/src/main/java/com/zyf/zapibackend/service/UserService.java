@@ -2,7 +2,7 @@ package com.zyf.zapibackend.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zyf.zapibackend.model.entity.User;
+import com.zyf.zapicommon.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -3,9 +3,9 @@ package com.zyf.zapibackend.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zyf.zapibackend.common.ErrorCode;
 import com.zyf.zapibackend.exception.BusinessException;
-import com.zyf.zapibackend.model.entity.InterfaceInfo;
 import com.zyf.zapibackend.service.InterfaceInfoService;
 import com.zyf.zapibackend.mapper.InterfaceInfoMapper;
+import com.zyf.zapicommon.model.entity.InterfaceInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, InterfaceInfo>
-    implements InterfaceInfoService{
+    implements InterfaceInfoService {
 
     @Override
     public void validInterfaceInfo(InterfaceInfo interfaceInfo, boolean add) {

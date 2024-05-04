@@ -1,10 +1,10 @@
-package com.zyf.zapibackend.model.entity;
+package com.zyf.zapicommon.model.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 用户接口关系
