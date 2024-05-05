@@ -10,7 +10,7 @@ import com.zyf.zapibackend.service.AnalysisService;
 import com.zyf.zapicommon.model.entity.InterfaceInfo;
 import com.zyf.zapicommon.model.entity.UserInterfaceInfo;
 import org.springframework.beans.BeanUtils;
-import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Service
 public class AnalysisServiceImpl implements AnalysisService {
 
     @Resource
