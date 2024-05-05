@@ -1,5 +1,6 @@
 package com.zyf.zapibackend.controller;
 
+import com.zyf.zapibackend.annotation.AuthCheck;
 import com.zyf.zapibackend.common.BaseResponse;
 import com.zyf.zapibackend.common.ErrorCode;
 import com.zyf.zapibackend.common.ResultUtils;
@@ -28,6 +29,7 @@ public class AnalysisController {
      * @param interfaceNum 数量
      * @return 返回对应数量的接口
      */
+    @AuthCheck(mustRole = "admin")
     @GetMapping("/top/invoke/interface")
     public BaseResponse<List<InterfaceInfoVO>> listTopInvokeInterface(Integer interfaceNum) {
         if (interfaceNum == null || interfaceNum <= 0) {

@@ -39,9 +39,6 @@ public class UserInterfaceInfoController {
     @Resource
     private UserService userService;
 
-    @Resource
-    private ZApiClient zApiClient;
-
     /**
      * 创建用户接口关系
      *
